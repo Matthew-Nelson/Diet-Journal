@@ -1,2 +1,23 @@
 <h1>Landing Page</h1>
+
+<p>
+<% if logged_in? %>
+  Welcome back
+  <% @current_user = User.find(session[:user_id]) if session[:user_id]%>
+  <%= @current_user.name %>
+<% end %>
+</p>
+
+
 <p>This is where the most recent posts will go</p>
+
+
+
+<ul>
+<% @users.each do |u| %>
+  <li><%=link_to(u.name, user_path(u.id))%></li>
+<% end %>
+</ul>
+
+
+<%= link_to 'CreateMeal', new_meal_path %>

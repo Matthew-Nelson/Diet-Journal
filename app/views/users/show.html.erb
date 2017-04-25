@@ -1,2 +1,13 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= @user.name %></h1>
+
+<% @user.meals.each do |m| %>
+  <h3><%= m.meal_type %></h3>
+  <ul>
+    <%= m.id %>
+    <%= m.name %>
+  </ul>
+<% end %>
+
+<%= link_to "New meal", new_meal_path %>
+
+<%= @user.id %>
