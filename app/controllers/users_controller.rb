@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
 
-  before_action :authorize, only: [:show]
+  before_action :authorize, only: [:edit, :update, :destroy]
+
+  before_action
 
   def index
     @users = User.all
     @meals = Meal.all
-    # @foods = Food.all
   end
 
   def show
@@ -24,17 +25,25 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def update
+    @user = User.find session[:user_id]
+    @user.update(user_params)
+    redirect_to :user
   end
 
   def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    session[:user_id] = nil
+    redirect_to root_path
   end
 
   private
   def user_params
-    params.require(:user).permit(:name,:email,:password,:password_confirmation)
+    params.require(:user).permit(:name,:email,:password,:password_confirmation,:height,:weight,:trgwt)
   end
 
 end

@@ -1,2 +1,10 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>Edit your profile</h1>
+
+<%= form_for @user do |u| %>
+  <%= u.text_field :name, placeholder: "name" %>
+  <%= u.text_field :email, placeholder: "email" %>
+  <%= u.text_field :height, placeholder: "height (in inches)" %>
+  <%= u.text_field :weight, placeholder: "weight (in pounds)" %>
+  <%= u.text_field :trgwt, placeholder: "target weight (in pounds)" %>
+  <%= u.submit %>
+<% end %>

@@ -1,0 +1,73 @@
+<h1><%= @meal.meal_type %></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Dish Name</th>
+      <th>Cals</th>
+      <th>Carbs</th>
+      <th>Protein</th>
+      <th>Fat</th>
+      <th>Sugar</th>
+    </tr>
+  </thead>
+
+    <% @meal.foods.each do |f| %>
+      <tr>
+        <td><%= f.name %></td>
+        <td><%= f.cals %> kcals</td>
+        <td><%= f.carb %>g</td>
+        <td><%= f.protein %>g</td>
+        <td><%= f.fat %>g</td>
+        <td><%= f.sugar %>g</td>
+      </tr>
+    <% end %>
+
+  <tbody>
+    <% @meal.foods.each do |f| %>
+
+      <% c = f.cals %>
+      <% mc = @meal.cals.to_i%>
+      <% mc += c %>
+      <% @meal.cals = mc %>
+
+      <% ca = f.carb %>
+      <% mca = @meal.carb.to_i%>
+      <% mca += ca %>
+      <% @meal.carb = mca %>
+
+      <% p = f.protein %>
+      <% mp = @meal.protein.to_i%>
+      <% mp += p %>
+      <% @meal.protein = mp %>
+
+      <% fa = f.fat %>
+      <% mfa = @meal.fat.to_i%>
+      <% mfa += fa %>
+      <% @meal.fat = mfa %>
+
+      <% s = f.sugar %>
+      <% ms = @meal.sugar.to_i%>
+      <% ms += s %>
+      <% @meal.sugar = ms %>
+
+    <% end %>
+  <tbody>
+
+
+  <thead>
+    <tr>
+      <th>Totals</th>
+      <th><%= @meal.cals %> kcals</th>
+      <th><%= @meal.carb %>g</th>
+      <th><%= @meal.protein %>g</th>
+      <th><%= @meal.fat %>g</th>
+      <th><%= @meal.sugar %>g</th>
+    </tr>
+  </thead>
+
+
+
+</table>
+
+<%= link_to("Edit meal", edit_meal_path) %>

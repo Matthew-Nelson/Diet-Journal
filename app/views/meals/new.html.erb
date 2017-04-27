@@ -1,7 +1,8 @@
-<h1>We gonna make a new meal here</h1>
+<h2>Dear Diary</h2>
 
+
+<h4>Today I ate...</h4>
 <%= form_for @meal do |m| %>
-  Meal Type: <%= m.text_field :meal_type, placeholder: 'i.e. Breakfast, Lunch, Dinner', required: true  %>
-  Dish Name: <%= m.text_field :name, placeholder: 'What dish did you eat?', required: true %>
+  Meal: <%= m.text_field :meal_type, placeholder: 'i.e. Breakfast, Lunch, Dinner', required: true  %>
   <%= m.submit 'Create meal' %>
 <% end %>

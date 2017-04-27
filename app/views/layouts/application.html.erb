@@ -6,24 +6,30 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
 
   <body>
-    <%= link_to "Home", root_path %>
+    <link rel="stylesheet" href="https://bootswatch.com/spacelab/bootstrap.min.css">
 
-    <% if logged_in? %>
+    <%= render 'partials/navbar' %>
+
+    <!-- <%= link_to "Home", root_path %> -->
+
+    <!-- <% if logged_in? %>
       <% @current_user = User.find(session[:user_id]) if session[:user_id]%>
-      <%= @current_user.name %>
-    <% end %>
+      <% u = @current_user %>
+      <%= link_to u.name, user_path(u.id)  %>
+    <% end %> -->
 
-    <% if logged_in? %>
+    <!-- <% if logged_in? %>
       <%= link_to "Logout", logout_path, {method: "DELETE"} %>
     <% else %>
     	<%= link_to "Login", new_session_path %>
-    <% end %>
+    <% end %> -->
 
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
 
 
   </body>
