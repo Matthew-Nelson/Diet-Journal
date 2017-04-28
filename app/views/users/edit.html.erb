@@ -1,10 +1,13 @@
 <h1>Edit your profile</h1>
 
+
 <%= form_for @user do |u| %>
-  <%= u.text_field :name, placeholder: "name" %>
-  <%= u.text_field :email, placeholder: "email" %>
-  <%= u.text_field :height, placeholder: "height (in inches)" %>
-  <%= u.text_field :weight, placeholder: "weight (in pounds)" %>
-  <%= u.text_field :trgwt, placeholder: "target weight (in pounds)" %>
-  <%= u.submit %>
+  <p>Username: <%= u.text_field :name, placeholder: "name" %></p>
+  <p>Email: <%= u.text_field :email, placeholder: "email" %></p>
+  <p>Height: <%= u.text_field :height, placeholder: "height (in inches)" %></p>
+  <p>Weight: <%= u.text_field :weight, placeholder: "weight (in pounds)" %></p>
+  <p>Target Weight: <%= u.text_field :trgwt, placeholder: "target weight (in pounds)" %></p>
+  <p><%= u.submit :class => 'btn btn-primary'%></p>
 <% end %>
+
+<%= link_to 'Delete user!', @user, method: :delete, class: "btn btn-warning"%>

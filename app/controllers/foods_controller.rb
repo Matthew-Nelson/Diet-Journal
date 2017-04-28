@@ -21,6 +21,10 @@ class FoodsController < ApplicationController
   end
 
   def destroy
+    @food = Food.find(params[:id])
+    @meal = @food.meal
+    @food.destroy
+      redirect_to edit_meal_path @meal
   end
 
   private

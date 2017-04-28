@@ -1,9 +1,11 @@
+<% @user = User.find(@meal.user_id) %>
 <h1><%= @meal.meal_type %></h1>
+<h4> by: <%=link_to(@user.name, user_path(@user.id))%></h4>
 
-<table class="table table-striped">
+<table class="table table-hover">
   <thead>
-    <tr>
-      <th>Dish Name</th>
+    <tr class="info">
+      <th>Food name</th>
       <th>Cals</th>
       <th>Carbs</th>
       <th>Protein</th>
@@ -13,40 +15,40 @@
   </thead>
 
     <% @meal.foods.each do |f| %>
-      <tr>
-        <td><%= f.name %></td>
-        <td><%= f.cals %> kcals</td>
-        <td><%= f.carb %>g</td>
-        <td><%= f.protein %>g</td>
-        <td><%= f.fat %>g</td>
-        <td><%= f.sugar %>g</td>
+      <tr class="active">
+        <td class="col-md-7"><%= f.name %></td>
+        <td class="col-md-1"><%= f.cals %> kcals</td>
+        <td class="col-md-1"><%= f.carb %>g</td>
+        <td class="col-md-1"><%= f.protein %>g</td>
+        <td class="col-md-1"><%= f.fat %>g</td>
+        <td class="col-md-1"><%= f.sugar %>g</td>
       </tr>
     <% end %>
 
   <tbody>
     <% @meal.foods.each do |f| %>
 
-      <% c = f.cals %>
+      <% c = f.cals.to_i %>
       <% mc = @meal.cals.to_i%>
       <% mc += c %>
       <% @meal.cals = mc %>
 
-      <% ca = f.carb %>
+      <% ca = f.carb.to_i %>
       <% mca = @meal.carb.to_i%>
       <% mca += ca %>
       <% @meal.carb = mca %>
 
-      <% p = f.protein %>
+      <% p = f.protein.to_i %>
       <% mp = @meal.protein.to_i%>
       <% mp += p %>
       <% @meal.protein = mp %>
 
-      <% fa = f.fat %>
+      <% fa = f.fat.to_i %>
       <% mfa = @meal.fat.to_i%>
       <% mfa += fa %>
       <% @meal.fat = mfa %>
 
-      <% s = f.sugar %>
+      <% s = f.sugar.to_i %>
       <% ms = @meal.sugar.to_i%>
       <% ms += s %>
       <% @meal.sugar = ms %>
@@ -56,7 +58,7 @@
 
 
   <thead>
-    <tr>
+    <tr class="warning">
       <th>Totals</th>
       <th><%= @meal.cals %> kcals</th>
       <th><%= @meal.carb %>g</th>
@@ -70,4 +72,10 @@
 
 </table>
 
-<%= link_to("Edit meal", edit_meal_path) %>
+<% if logged_in? %>
+  <% @current_user = User.find(session[:user_id]) %>
+  <% @user = User.find(@meal.user_id) %>
+  <% if @current_user == @user %>
+  <%= link_to("Edit meal", edit_meal_path, class: "btn btn-default") %>
+  <% end %>
+<% end %>

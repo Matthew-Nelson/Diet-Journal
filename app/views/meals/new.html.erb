@@ -3,6 +3,6 @@
 
 <h4>Today I ate...</h4>
 <%= form_for @meal do |m| %>
-  Meal: <%= m.text_field :meal_type, placeholder: 'i.e. Breakfast, Lunch, Dinner', required: true  %>
-  <%= m.submit 'Create meal' %>
+  <p>Meal Title: <%= m.text_field :meal_type, placeholder: 'i.e. Breakfast, Lunch, Dinner...', required: true  %></p>
+  <%= m.submit 'Create meal', :class => "btn btn-default" %>
 <% end %>

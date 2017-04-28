@@ -13,18 +13,23 @@
   <% @user = User.find(Meal.find(params[:id]).user_id)  %>
   <% if @current_user == @user %>
 
-    <h3>Add or Edit Foods in Meal</h3>
-    <p>something</p>
+    <h3>Add or Edit Foods in <%= @meal.meal_type %></h3>
     <%= form_for @meal do |f| %>
       <%= f.fields_for :foods do |ff| %>
       <ul>
-        <li><%= ff.text_field :name, placeholder: 'name'%>
+        <li><%= ff.text_field :name, placeholder: 'food name'%>
         <%= ff.text_field :cals, placeholder: 'cals'%>
-        <%= ff.text_field :carb, placeholder: 'carbs'%>
-        <%= ff.text_field :protein, placeholder: 'protein'%>
-        <%= ff.text_field :fat, placeholder: 'fat'%>
-        <%= ff.text_field :sugar, placeholder: 'sugar'%>
-        <%= ff.check_box :_destroy %></li>
+        <%= ff.text_field :carb, placeholder: 'carbs (g)'%>
+        <%= ff.text_field :protein, placeholder: 'protein (g)'%>
+        <%= ff.text_field :fat, placeholder: 'fat (g)'%>
+        <%= ff.text_field :sugar, placeholder: 'sugar (g)'%>
+
+        <% if ff.object.id %>
+
+        <%= link_to food_path(ff.object), method: :delete, class: "btn btn-danger btn-sm" do %>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <% end %>
+        <% end %></li>
       </ul>
       <% end %>
       <!-- <a class="btn btn-primary btn-lg"><%= f.submit %></a> -->
